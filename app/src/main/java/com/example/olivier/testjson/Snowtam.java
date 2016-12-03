@@ -15,6 +15,7 @@ public class Snowtam {
     String H;
     String N;
     String R;
+    String S;
     String T;
 
     String tabmorceau[] = null;
@@ -141,7 +142,7 @@ public class Snowtam {
             case "R)":
 
                 for (int y = u; y < tabmorceau.length; y++) {
-                    if ((tabmorceau[y].equals("T)")) || (tabmorceau[y].equals(")"))) {
+                    if ((tabmorceau[y].equals("T)")) || (tabmorceau[y].equals("S)"))) {
                         break;
                     }
                     arrayListmorceau.add(tabmorceau[y]);
@@ -150,6 +151,21 @@ public class Snowtam {
                 R = (stringmorceaucoupe);
                 arrayListmorceau.clear();
                 break;
+
+
+            case "S)":
+                for (int y = u; y < tabmorceau.length; y++) {
+                    if ((tabmorceau[y].equals("T)"))) {
+                        break;
+                    }
+                    arrayListmorceau.add(tabmorceau[y]);
+                }
+                stringmorceaucoupe = arrayListmorceau.toString().replace("[", "").replace("]", "").replace(",", " ");
+
+                S = (stringmorceaucoupe);
+                arrayListmorceau.clear();
+                break;
+
 
             case "T)":
 
@@ -223,6 +239,13 @@ public class Snowtam {
     }
     public void setR(String R) {
         this.R = R;
+    }
+
+    public String getS() {
+        return S;
+    }
+    public void setS(String S) {
+        this.S = S;
     }
 
     public String getT() {
