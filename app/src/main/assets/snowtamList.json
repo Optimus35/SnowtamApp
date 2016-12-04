@@ -1,0 +1,10 @@
+{
+  "ENBO": {
+    "gps": "15àjc",
+    "snowtam": "(SNOWTAM 0238 A) ENBO B) 12040629 C) 07 F) 2/2/2 G) XX/XX/XX H) 5/5/5 N) ALPHA BRAVO CHARLIE DELTA ECHO WHISKEY/2 R) APRON EAST APRON WEST RWY EXTENSION WEST/2 T) CONTAMINATION/100/100/100/PERCENT.)"
+  },
+  "E16G": {
+    "gps": "test2",
+    "snowtam": "test3"
+  }
+}
