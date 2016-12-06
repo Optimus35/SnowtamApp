@@ -1,4 +1,4 @@
-package com.example.olivier.testjson.views;
+package com.example.olivier.snowtamapp.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.olivier.testjson.R;
+import com.example.olivier.snowtamapp.R;
 
 import java.util.ArrayList;
 

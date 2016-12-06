@@ -1,4 +1,4 @@
-package com.example.olivier.testjson;
+package com.example.olivier.snowtamapp;
 
 import java.util.ArrayList;
 

@@ -2,4 +2,5 @@
     <string name="app_name">TestJson</string>
     <string name="ok">Ok</string>
     <string name="code">Code</string>
+    <string name="google_maps_api_key">AIzaSyB5Dj6_S4LrEDonyWGcK5WbJwyKtYp3y7o</string>
 </resources>
