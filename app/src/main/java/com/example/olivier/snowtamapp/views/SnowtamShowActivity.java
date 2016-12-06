@@ -1,8 +1,16 @@
 package com.example.olivier.snowtamapp.views;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.olivier.snowtamapp.R;
 import com.example.olivier.snowtamapp.models.Snowtam;
@@ -19,23 +27,27 @@ import org.json.JSONException;
 
 import static com.example.olivier.snowtamapp.views.CodeInputActivity.SNOWTAM_CODE;
 
-public class SnowtamShowActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class SnowtamShowActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, OnMapReadyCallback {
     Snowtam snowtam;
     SnowtamRawFragment snowtamRawFragment;
+    MapFragment mMapFragment;
     android.app.FragmentManager fragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_snowtam_show);
         try {
             getSnowtam();
             setFragments();
+            setSpinner();
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        setContentView(R.layout.activity_snowtam_show);
+
     }
 
     private void getSnowtam() throws JSONException {
@@ -47,20 +59,45 @@ public class SnowtamShowActivity extends AppCompatActivity implements OnMapReady
 
     private void setFragments() {
         fragmentManager = getFragmentManager();
+        //set mapFragment
+        mMapFragment = MapFragment.newInstance();
+        mMapFragment.getMapAsync(this);
+        //set snotamRowfragment
         snowtamRawFragment = new SnowtamRawFragment();
         snowtamRawFragment.setSnowtam(snowtam);
-        android.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-        // ft.add(R.id.container, snowtamRawFragment);
-
-        MapFragment mMapFragment = MapFragment.newInstance();
-        mMapFragment.getMapAsync(this);
-
-        GoogleMapOptions googleMapOptions = new GoogleMapOptions();
-        //  googleMapOptions.camera(new CameraPosition(new LatLng(21 , 57),10,0,500));
-        mMapFragment.newInstance();
-        ft.add(R.id.container, mMapFragment);
+        //show rawSnowtam
+       FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.add(R.id.container, snowtamRawFragment);
         ft.commit();
     }
+
+    private void setSpinner() {
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerView);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_choices, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+    private void showRawSnowtamFragment() {
+    FragmentTransaction ft  = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, snowtamRawFragment);
+        ft.commit();
+    }
+
+    private void showMapFragment() {
+     FragmentTransaction  ft = fragmentManager.beginTransaction();
+        //set mapFragment
+
+        ft.replace(R.id.container, mMapFragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
 
     @Override
     public void onMapReady(GoogleMap map) {
@@ -69,6 +106,19 @@ public class SnowtamShowActivity extends AppCompatActivity implements OnMapReady
                 .zIndex(3)
                 .position(new LatLng(50, 100))
                 .title("Marker"));
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0 : showRawSnowtamFragment();break;
+            case 1 : showMapFragment(); break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }
