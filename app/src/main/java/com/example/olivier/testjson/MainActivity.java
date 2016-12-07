@@ -3,10 +3,11 @@ package com.example.olivier.testjson;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String scoderecu ="C) 17 F) 1 / 1 / 1 G) XX / XX / XX H) 5 / 5 / 5 N) A1 A2 A3 A4 A5 A6 A7 A8 A9 B C D E F G H J M N U W Y / 1 R) ALL REPORTED APRONS / 1 T) CONTAMINATION / 100 / 100 / 100 / PERCENT.) .23 NOV 12: 24 2016 UNTIL 24 NOV 12: 24 2016. CREATED: 23 NOV 12: 28 2016 ";
+    private String scoderecu ="B) 10011230 C) 17 F) 1 / 1 / 1 G) XX / XX / XX H) 5 / 5 / 5 N) A1 A2 A3 A4 A5 A6 A7 A8 A9 B C D E F G H J M N U W Y / 1 R) ALL REPORTED APRONS / 1 T) CONTAMINATION / 100 / 100 / 100 / PERCENT.) .23 NOV 12: 24 2016 UNTIL 24 NOV 12: 24 2016. CREATED: 23 NOV 12: 28 2016 ";
 
 
     @Override
@@ -15,10 +16,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Snowtam sn = new Snowtam();
+        Traduction td = new Traduction();
 
         sn.Decoupage(scoderecu);
 
+       // sn.TradAll(sn.getF());
 
+        td.TradAll(sn.getB());
+        td.TradAll(sn.getC());
+        td.TradAll(sn.getG());
+        td.TradAll(sn.getH());
+        td.TradAll(sn.getN());
+        td.TradAll(sn.getR());
+        td.TradAll(sn.getT());
+
+        /*String test= "abcdef";
+        String tt=test.substring(0,2);
+        Toast.makeText(getApplicationContext(),tt, Toast.LENGTH_LONG).show();
+*/
 
         TextView txtview1 =(TextView)findViewById(R.id.textView);
         TextView txtview2 =(TextView)findViewById(R.id.textView2);
@@ -29,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
         TextView txtview7 =(TextView)findViewById(R.id.textView7);
 
 
-        txtview1.setText(sn.getC());
-        txtview2.setText(sn.getF());
-        txtview3.setText(sn.getG());
-        txtview4.setText(sn.getH());
-        txtview5.setText(sn.getN());
-        txtview6.setText(sn.getR());
-        txtview7.setText(sn.getT());
+        txtview1.setText(sn.getB());
+        txtview2.setText(td.getTradB());
+        txtview3.setText(td.getTradG());
+        txtview4.setText(td.getTradH());
+        txtview5.setText(td.getTradN());
+        txtview6.setText(td.getTradR());
+        txtview7.setText(td.getTradT());
+
     }
 }

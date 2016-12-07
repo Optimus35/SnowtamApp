@@ -1,5 +1,7 @@
 package com.example.olivier.testjson;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,7 @@ public class Traduction {
     String tradS;
     String tradT;
 
-
+    int intmorceau2;
 
     String tabmorceausnow[] = null;
     String stringmorceaucoupesnow;
@@ -53,7 +55,7 @@ public class Traduction {
                 case "B)":
                     arrayListmorceausnow.add(tabmorceausnow[u]);
 
-                    String resultB = TradB(tabmorceausnow[u + 1]);
+                    String resultB = TradB(tabmorceausnow[(tabmorceausnow.length - 1)]);
                     tabmorceausnow[u+1]=resultB;
 
                     arrayListmorceausnow.add(tabmorceausnow[u+1]);
@@ -68,10 +70,10 @@ public class Traduction {
                 case "C)":
                     arrayListmorceausnow.add(tabmorceausnow[u]);
 
-                    String resultC = TradC(tabmorceausnow[u+1]);
-                    tabmorceausnow[u+1]=resultC;
+                    String resultC = TradC(tabmorceausnow[(tabmorceausnow.length - 1)]);
+                    tabmorceausnow[(u+1)]=resultC;
 
-                    arrayListmorceausnow.add(tabmorceausnow[u+1]);
+                    arrayListmorceausnow.add(tabmorceausnow[(u+1)]);
 
                     stringmorceaucoupesnow = arrayListmorceausnow.toString().replace("[", "").replace("]", "").replace(",", " ");
 
@@ -81,7 +83,8 @@ public class Traduction {
 
 
                 case "F)":
-                    for(int y = u; y <= tabmorceausnow.length; y++ )
+                    arrayListmorceausnow.add(tabmorceausnow[0]);
+                    for(int y = u; y < (tabmorceausnow.length); y++ )
                     {
                        String resultF = TradF(tabmorceausnow[y]);
                         tabmorceausnow[y] = resultF;
@@ -95,9 +98,11 @@ public class Traduction {
 
 
                 case "G)":
-                    for(int y = u; y <= tabmorceausnow.length; y++ )
+                    arrayListmorceausnow.add(tabmorceausnow[u]);
+                    arrayListmorceausnow.add("MEAN DEPTH ");
+                    for(int y = u+1; y < tabmorceausnow.length; y++ )
                     {
-                        String resultG = TradG(tabmorceausnow[y],y);
+                        String resultG = TradG(tabmorceausnow[y]);
                         tabmorceausnow[y] = resultG;
                         arrayListmorceausnow.add(tabmorceausnow[y]);
                     }
@@ -109,7 +114,8 @@ public class Traduction {
 
 
                 case "H)":
-                    for(int y = u; y <= tabmorceausnow.length; y++ )
+                    arrayListmorceausnow.add(tabmorceausnow[u]);
+                    for(int y = u; y < tabmorceausnow.length; y++ )
                     {
                         String resultH = TradH(tabmorceausnow[y]);
                         tabmorceausnow[y] = resultH;
@@ -126,16 +132,15 @@ public class Traduction {
 
                     arrayListmorceausnow.add(tabmorceausnow[u]);
 
-                    String resultN = TradF(tabmorceausnow[tabmorceausnow.length]);
-                    tabmorceausnow[tabmorceausnow.length] = resultN;
-
-                    arrayListmorceausnow.add(tabmorceausnow[tabmorceausnow.length]);
-
-
                     for(int y = u+1; y < tabmorceausnow.length; y++ )
                     {
                         arrayListmorceausnow.add(tabmorceausnow[y]);
                     }
+
+                    String resultN = TradF(tabmorceausnow[((tabmorceausnow.length)-1)]);
+                    tabmorceausnow[((tabmorceausnow.length)-1)] = resultN;
+
+                    arrayListmorceausnow.add(tabmorceausnow[((tabmorceausnow.length)-1)]);
 
                     stringmorceaucoupesnow = arrayListmorceausnow.toString().replace("[", "").replace("]", "").replace(",", " ");
 
@@ -147,16 +152,14 @@ public class Traduction {
                 case "R)":
                     arrayListmorceausnow.add(tabmorceausnow[u]);
 
-                    String resultR = TradF(tabmorceausnow[tabmorceausnow.length]);
-                    tabmorceausnow[tabmorceausnow.length] = resultR;
-
-                    arrayListmorceausnow.add(tabmorceausnow[tabmorceausnow.length]);
-
-
                     for(int y = u+1; y < tabmorceausnow.length; y++ )
                     {
                         arrayListmorceausnow.add(tabmorceausnow[y]);
                     }
+
+                    String resultR = TradF(tabmorceausnow[((tabmorceausnow.length)-1)]);
+                    tabmorceausnow[((tabmorceausnow.length)-1)] = resultR;
+                    arrayListmorceausnow.add(tabmorceausnow[((tabmorceausnow.length)-1)]);
 
                     stringmorceaucoupesnow = arrayListmorceausnow.toString().replace("[", "").replace("]", "").replace(",", " ");
 
@@ -181,7 +184,8 @@ public class Traduction {
 
 
                 case "T)":
-                    for(int y = u; y <= tabmorceausnow.length; y++ )
+                    arrayListmorceausnow.add(tabmorceausnow[u]);
+                    for(int y = u; y < tabmorceausnow.length; y++ )
                     {
                         String resultT = TradT(tabmorceausnow[y]);
                         tabmorceausnow[y] = resultT;
@@ -200,14 +204,14 @@ public class Traduction {
 
     private String TradB(String stringdata)
     {
+        String resultdecod = "";
+
         String decouptempsjours=stringdata.substring(0,2);
         String decouptempsmois=stringdata.substring(2,4);
-        String decouptempsheure=stringdata.substring(4,7);
+        String decouptempsheure=stringdata.substring(4,6);
         String decouptempsminute=stringdata.substring(6);
 
         String decouptempsmoistrad = TradMois(decouptempsmois);
-
-        String resultdecod = "";
 
         resultdecod = decouptempsjours+ " " +decouptempsmoistrad+ " " +decouptempsheure+ "h" +decouptempsminute+"UTC";
 
@@ -217,8 +221,12 @@ public class Traduction {
 
     private String TradC(String stringdata)
     {
-        int intmorceau2 = Integer.parseInt(stringdata);
         String resultdecod;
+
+        try{
+            intmorceau2 = Integer.parseInt(stringdata);
+        }catch (NumberFormatException e){
+        }
 
         if ( intmorceau2 == 88)
         {
@@ -228,10 +236,10 @@ public class Traduction {
         {
             if ( intmorceau2 <= 50)
             {
-                resultdecod ="RUNWAY "+stringdata+"L";
+                resultdecod ="RUNWAY "+intmorceau2+"L";
             }
             else {
-                resultdecod ="RUNWAY "+stringdata+"R";
+                resultdecod ="RUNWAY "+intmorceau2+"R";
             }
         }
         return resultdecod;
@@ -300,13 +308,13 @@ public class Traduction {
 
 
 
-    private String TradG(String stringdata, int p)
+    private String TradG(String stringdata)
     {
         String resultdecod="";
 
-        if (stringdata.equals("XX"))
+        if (stringdata.equals(""))
         {
-            resultdecod = "NON SIGNIFICATIVE";
+            resultdecod = stringdata;
         }
         else
         {
@@ -315,14 +323,13 @@ public class Traduction {
                 resultdecod = stringdata;
             }
             else {
-                if (p > 1)
+                if (stringdata.equals("XX"))
                 {
-                    resultdecod = stringdata+"mm";
+                    resultdecod = "NON SIGNIFICATIVE";
                 }
                 else {
-                    resultdecod = "MEAN DEPTH "+stringdata+"mm";
+                    resultdecod = stringdata+"mm";
                 }
-
             }
         }
 
@@ -426,6 +433,9 @@ public class Traduction {
                 resultdecod="DECEMBER";
                 break;
 
+            default:
+                resultdecod = stringdata;
+            break;
         }
         return resultdecod;
     }
@@ -497,7 +507,7 @@ public class Traduction {
     }
 
     public String getTradB() {
-        return tradC;
+        return tradB;
     }
     public void setTradB(String tradB) {
         this.tradB = tradB;
@@ -558,16 +568,6 @@ public class Traduction {
     public void setTradT(String tradT) {
         this.tradT = tradT;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
