@@ -1,5 +1,7 @@
 package com.example.olivier.snowtamapp.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 /**
@@ -7,27 +9,29 @@ import java.util.ArrayList;
  */
 public class Snowtam {
 
-    String A;
-    String B;
-    String C;
-    String F;
-    String G;
-    String H;
-    String N;
-    String R;
-    String S;
-    String T;
+    private String A;
+    private String B;
+    private String C;
+    private String F;
+    private String G;
+    private String H;
+    private String N;
+    private String R;
+    private String S;
+    private  String T;
+    private LatLng latLng;
 
     String tabmorceau[] = null;
     String stringmorceaucoupe;
     ArrayList arrayListmorceau = new ArrayList();
 
 
-    public Snowtam(String data) {
-        splitingSnowtam(data);
+    public Snowtam(String rawSnowtam,double lng,double lat ) {
+        setSnowtamDataSnowtam(rawSnowtam);
+        setLatLng(lng,lat);
     }
 
-    private void splitingSnowtam(String stringdata) {
+    private void setSnowtamDataSnowtam(String stringdata) {
 
         tabmorceau = stringdata.split(" ");
 
@@ -225,4 +229,11 @@ public class Snowtam {
     }
 
 
+    public LatLng getLatLng() {
+        return latLng;
+    }
+
+    private void setLatLng(double lng, double lat) {
+        this.latLng = new LatLng(lat,lng);
+    }
 }

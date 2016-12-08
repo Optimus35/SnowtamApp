@@ -2,6 +2,8 @@ package com.example.olivier.snowtamapp.models;
 
 import android.app.Activity;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,6 +42,9 @@ public class SnowtamGenerator {
 
     public Snowtam getSnowtam(String code) throws JSONException {
         JSONObject snowtamJSON = (JSONObject) snowtamListJSON.get(code);
-        return new Snowtam(snowtamJSON.get("snowtam").toString());
+        JSONObject gpsCoordinate = snowtamJSON.getJSONObject("gps");
+        double lat = gpsCoordinate.getDouble("lat");
+        double lng = gpsCoordinate.getDouble("lng");
+        return new Snowtam(snowtamJSON.get("snowtam").toString(),lng,lat);
     }
 }

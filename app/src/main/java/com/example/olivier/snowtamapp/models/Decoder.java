@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by Olivier on 01/12/2016.
  */
-public class Traduction {
+public class Decoder {
 
 
 

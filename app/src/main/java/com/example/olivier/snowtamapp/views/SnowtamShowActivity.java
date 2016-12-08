@@ -94,17 +94,17 @@ public class SnowtamShowActivity extends AppCompatActivity implements AdapterVie
         //set mapFragment
 
         ft.replace(R.id.container, mMapFragment);
-        ft.addToBackStack(null);
+       // ft.addToBackStack(null);
         ft.commit();
     }
 
 
     @Override
     public void onMapReady(GoogleMap map) {
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(50, 100), 5.0f));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(snowtam.getLatLng(), 12.0f));
         map.addMarker(new MarkerOptions()
                 .zIndex(3)
-                .position(new LatLng(50, 100))
+                .position(snowtam.getLatLng())
                 .title("Marker"));
 
     }
