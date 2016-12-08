@@ -1,6 +1,5 @@
-package com.example.olivier.testjson;
+package com.example.olivier.snowtamapp.models;
 
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -9,10 +8,7 @@ import java.util.ArrayList;
  */
 public class Traduction {
 
-    // recoi en entrée la string correspondant à la lettre souhaité
-    //ex: je veux la traduction de F alors j'apelle la méthode tradAll(getF de Snowtam)
 
-    //Snowtam sn =new Snowtam();
 
     String tradA;
     String tradB;
@@ -86,7 +82,7 @@ public class Traduction {
                     arrayListmorceausnow.add(tabmorceausnow[0]);
                     for(int y = u; y < (tabmorceausnow.length); y++ )
                     {
-                       String resultF = TradF(tabmorceausnow[y]);
+                        String resultF = TradF(tabmorceausnow[y]);
                         tabmorceausnow[y] = resultF;
                         arrayListmorceausnow.add(tabmorceausnow[y]);
                     }
@@ -94,7 +90,7 @@ public class Traduction {
 
                     tradF = stringmorceaucoupesnow;
                     arrayListmorceausnow.clear();
-                     break;
+                    break;
 
 
                 case "G)":
@@ -132,7 +128,7 @@ public class Traduction {
 
                     arrayListmorceausnow.add(tabmorceausnow[u]);
 
-                    for(int y = u+1; y < tabmorceausnow.length; y++ )
+                    for(int y = u+1; y < ((tabmorceausnow.length)-1); y++ )
                     {
                         arrayListmorceausnow.add(tabmorceausnow[y]);
                     }
@@ -152,7 +148,7 @@ public class Traduction {
                 case "R)":
                     arrayListmorceausnow.add(tabmorceausnow[u]);
 
-                    for(int y = u+1; y < tabmorceausnow.length; y++ )
+                    for(int y = u+1; y < ((tabmorceausnow.length)-1); y++ )
                     {
                         arrayListmorceausnow.add(tabmorceausnow[y]);
                     }
@@ -252,59 +248,59 @@ public class Traduction {
 
         String resultdecod="";
 
-            switch (stringdata) {
+        switch (stringdata) {
 
-                case "NIL":
-                    resultdecod="CLEAR AND DRY";
-                    break;
+            case "NIL":
+                resultdecod="CLEAR AND DRY";
+                break;
 
-                case "0":
-                    resultdecod="CLEAR AND DRY";
-                    break;
+            case "0":
+                resultdecod="CLEAR AND DRY";
+                break;
 
-                case "1":
-                    resultdecod="DAMP";
-                    break;
+            case "1":
+                resultdecod="DAMP";
+                break;
 
-                case "2":
-                    resultdecod="WET or WATER PATCHES";
-                    break;
+            case "2":
+                resultdecod="WET or WATER PATCHES";
+                break;
 
-                case "3":
-                    resultdecod="RIME OR FROST COVERED";
-                    break;
+            case "3":
+                resultdecod="RIME OR FROST COVERED";
+                break;
 
-                case "4":
-                    resultdecod="DRY SNOW";
-                    break;
+            case "4":
+                resultdecod="DRY SNOW";
+                break;
 
-                case "5":
-                    resultdecod="WET SNOW";
-                    break;
+            case "5":
+                resultdecod="WET SNOW";
+                break;
 
-                case "6":
-                    resultdecod="SLUSH";
-                    break;
+            case "6":
+                resultdecod="SLUSH";
+                break;
 
-                case "7":
-                    resultdecod="ICE";
-                    break;
+            case "7":
+                resultdecod="ICE";
+                break;
 
-                case "8":
-                    resultdecod="COMPACTED OR ROLLED SNOW";
-                    break;
+            case "8":
+                resultdecod="COMPACTED OR ROLLED SNOW";
+                break;
 
-                case "9":
-                    resultdecod="FROZEN RUTS OR RIDGES";
-                    break;
+            case "9":
+                resultdecod="FROZEN RUTS OR RIDGES";
+                break;
 
-                case "/":
-                    resultdecod = stringdata;
-                    break;
+            case "/":
+                resultdecod = stringdata;
+                break;
 
-            }
-        return resultdecod;
         }
+        return resultdecod;
+    }
 
 
 
@@ -435,7 +431,7 @@ public class Traduction {
 
             default:
                 resultdecod = stringdata;
-            break;
+                break;
         }
         return resultdecod;
     }
@@ -493,6 +489,11 @@ public class Traduction {
                 break;
 
         }
+        if (resultdecod.equals(""))
+        {
+            resultdecod = stringdata;
+        }
+
         return resultdecod;
     }
 
@@ -569,11 +570,5 @@ public class Traduction {
         this.tradT = tradT;
     }
 
-
-
 }
-
-
-
-
 

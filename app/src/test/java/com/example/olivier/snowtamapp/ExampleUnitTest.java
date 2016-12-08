@@ -1,8 +1,8 @@
-package com.example.olivier.testjson;
+package com.example.olivier.snowtamapp;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.

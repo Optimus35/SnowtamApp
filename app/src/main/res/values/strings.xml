@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TestJson</string>
+    <string name="ok">Ok</string>
+    <string name="code">Code</string>
+    <string-array name="spinner_choices">
+        <item>Raw snotaw</item>
+        <item>Map view</item>
+    </string-array>
+    <string name="google_maps_api_key">AIzaSyB5Dj6_S4LrEDonyWGcK5WbJwyKtYp3y7o</string>
 </resources>

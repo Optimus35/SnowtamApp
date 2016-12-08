@@ -15,25 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Snowtam sn = new Snowtam();
-        Traduction td = new Traduction();
-
-        sn.Decoupage(scoderecu);
-
-       // sn.TradAll(sn.getF());
-
-        td.TradAll(sn.getB());
-        td.TradAll(sn.getC());
-        td.TradAll(sn.getG());
-        td.TradAll(sn.getH());
-        td.TradAll(sn.getN());
-        td.TradAll(sn.getR());
-        td.TradAll(sn.getT());
-
-        /*String test= "abcdef";
-        String tt=test.substring(0,2);
-        Toast.makeText(getApplicationContext(),tt, Toast.LENGTH_LONG).show();
-*/
 
         TextView txtview1 =(TextView)findViewById(R.id.textView);
         TextView txtview2 =(TextView)findViewById(R.id.textView2);
@@ -44,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         TextView txtview7 =(TextView)findViewById(R.id.textView7);
 
 
-        txtview1.setText(sn.getB());
+      /*  txtview1.setText(sn.getB());
         txtview2.setText(td.getTradB());
         txtview3.setText(td.getTradG());
         txtview4.setText(td.getTradH());
         txtview5.setText(td.getTradN());
         txtview6.setText(td.getTradR());
-        txtview7.setText(td.getTradT());
+      */  txtview7.setText(td.getTradT());
 
     }
 }
